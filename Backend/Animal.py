@@ -3,9 +3,10 @@ import datetime
 class Animal:
     instance = 0
 
-    def __init__(self,breed, age, weight, height, gender):
+    def __init__(self,breed, age, weight, height, gender, ID=None):
         Animal.instance += 1
         self._ID = Animal.instance
+
         self._breed = breed
         self._age = age
         self._weight = weight
@@ -110,6 +111,21 @@ class Animal:
                 return "Success"
 
         return "Failed"
+
+    def to_dict(self):
+        return {
+            "ID" : self._ID,
+            "Breed" : self._breed,
+            "Age" : self._age,
+            "Weight" : self._weight,
+            "Height" : self._height,
+            "Gender" : self._gender,
+            "Medication" : self._medication,
+            "Vaccination Date" : self._vaccination_date,
+            "Checkup Date" : self._checkup_date,
+            "Picture" : self._pic,
+            "Lost Status" : self._is_lost,
+        }
 
     def is_lost(self):
         self._is_lost = True

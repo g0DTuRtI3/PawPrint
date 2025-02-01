@@ -11,6 +11,16 @@ class Owner:
         self._email = email
         self._address = address
 
+    def to_dict(self):
+        return {
+            "ID" : self._ID,
+            "Name" : self._name,
+            "Phone Number" : self._phone_number,
+            "Gender" : self._gender,
+            "Email" : self._email,
+            "Address" : self._address,
+        }
+
     @property
     def ID(self):
         return self._ID
