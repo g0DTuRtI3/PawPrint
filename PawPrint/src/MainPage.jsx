@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MainPageTables from './MainPageTables';
 import './MainPage.css';
 import MainPageImages from './MainPageImages';
 import MainPageButtons from './MainPageButtons';
 import EditForm from './EditForm';
-import axios from 'axios'
+import axios from 'axios';
 
 function MainPage() {
-    // State to store data fetched from the API
-    const [animalData, setAnimalData] = useState(null);
-
-    // Fetch data when the component mounts
-    useEffect(() => {
-        const databaseName = "my_database";
-        const url = `http://127.0.0.1:5000/api/database/${databaseName}/`;
-        
-        // Fetching data from your Flask API
-        axios.post(url, animalData)
-            .then(response => {
-                console.log('Data saved:', response.data);
-                setResponseData(response.data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }, [animalData]);
-
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         petName: '',
@@ -55,7 +36,24 @@ function MainPage() {
     };
 
     const handleSave = (data) => {
-        setFormData(data);  // Update the form data in MainPage
+        // Update the form data in MainPage
+        setFormData(data);
+
+        // Send POST request after form data is updated
+        const databaseName = "my_database";
+        const url = `http://127.0.0.1:8080/api/database/${databaseName}/`;
+
+        // Make POST request to save the data
+        axios.post(url, data)
+            .then(response => {
+                console.log('Data saved:', response.data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        // Close the form after saving data
+        setShowForm(false);
     };
 
     return (

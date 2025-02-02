@@ -5,23 +5,23 @@ function MainPageTables({ formData }) {
         <div className="tables-container">
             <div className="generalTable">
                 <div className="table-row">
-                    <span className="label">{formData.petName}</span>
+                    <span className="label">Name: {formData.petName}</span>
                     <div className="table-cell"></div>
                 </div>
                 <div className="table-row">
-                    <span className="label" id="breedValue">{formData.breed}</span>
+                    <span className="label" id="breedValue">Breed: {formData.breed}</span>
                     <div className="table-cell"></div>
                 </div>
                 <div className="table-row">
-                    <span className="label" id="genderValue">{formData.gender}</span>
+                    <span className="label" id="genderValue">Gender: {formData.gender}</span>
                     <div className="table-cell"></div>
                 </div>
                 <div className="table-row">
-                    <span className="label" id="id_Value">{formData.id}</span>
+                    <span className="label" id="id_Value">ID: {formData.id}</span>
                     <div className="table-cell"></div>
                 </div>
                 <div className="table-row">
-                    <span className="label" id="statusValue">{formData.status}</span>
+                    <span className="label" id="statusValue">Status: {formData.status}</span>
                     <div className="table-cell"></div>
                 </div>
             </div>
