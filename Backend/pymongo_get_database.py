@@ -14,10 +14,3 @@ def get_database():
     client = MongoClient(CONNECTION)
 
     return client["ConU"]
-
-# if __name__ == "__main__":
-#     # Call get_database() and store the database object in dbname
-#     dbname = get_database()
-#
-#     # You can now interact with the database `dbname`
-#     print(f"Connected to database: {dbname.name}")
