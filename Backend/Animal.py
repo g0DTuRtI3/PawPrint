@@ -22,6 +22,7 @@ class Animal:
         self._age = age
         self._weight = weight
         self._gender = gender
+        self._owner = []
 
         if allergy is None:
             self._allergy = []
@@ -63,6 +64,10 @@ class Animal:
         """Translate the obj into a dictionary format"""
         vaccination_date_str = [date_to_str(this_date) for this_date in self._vaccination_date]
         checkup_date_str = [date_to_str(this_date) for this_date in self._checkup_date]
+
+        owner_dict = []
+        for owner in self._owner:
+            owner_dict.append(owner.to_dict())
         return {
             "ID": self._ID,
             "Name": self._name,
@@ -76,7 +81,16 @@ class Animal:
             "Checkup Date": checkup_date_str,
             "Picture": self._pic,
             "Lost Status": self._is_lost,
+            "Owner" : owner_dict,
         }
+
+    def add_owner(self, new_owner):
+        """Adds new owner to the animal.
+            new_animal can be one animal or a list of them"""
+        if isinstance(new_owner, list):
+            self._owner.extend(new_owner)
+        else:
+            self._owner.append(new_owner)
 
     def add_medication(self, medication):
         """Accepts medication as a string or a list of string"""

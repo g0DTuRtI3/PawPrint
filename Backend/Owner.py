@@ -9,13 +9,13 @@ class Owner:
         self._gender = gender
         self._email = email
         self._address = address
-        self.animals = []
+        # self.animals = []
 
     def to_dict(self):
         """Translate the obj into a dictionary format"""
-        animal_dict = []
-        for animal in self.animals:
-            animal_dict.append(animal.to_dict())
+        # animal_dict = []
+        # for animal in self.animals:
+        #     animal_dict.append(animal.to_dict())
 
         return {
             "ID": self._ID,
@@ -24,16 +24,16 @@ class Owner:
             "Gender": self._gender,
             "Email": self._email,
             "Address": self._address,
-            "Animals": animal_dict,
+            # "Animals": animal_dict,
         }
 
-    def add_animal(self, new_animal):
-        """Adds new animals to the owner.
-        new_animal can be one animal or a list of them"""
-        if isinstance(new_animal, list):
-            self.animals.extend(new_animal)
-        else:
-            self.animals.append(new_animal)
+    # def add_animal(self, new_animal):
+    #     """Adds new animals to the owner.
+    #     new_animal can be one animal or a list of them"""
+    #     if isinstance(new_animal, list):
+    #         self.animals.extend(new_animal)
+    #     else:
+    #         self.animals.append(new_animal)
 
     @property
     def ID(self):
