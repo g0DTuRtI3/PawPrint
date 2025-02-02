@@ -3,13 +3,15 @@ import datetime
 class Animal:
     instance = 0
 
-    def __init__(self,breed, age, weight, height):
+    def __init__(self,breed, age, weight, height, gender, ID=None):
         Animal.instance += 1
         self._ID = Animal.instance
+
         self._breed = breed
         self._age = age
         self._weight = weight
         self._height = height
+        self._gender = gender
         self._medication = []
         self._vaccination_date = []
         self._checkup_date = []
@@ -110,16 +112,27 @@ class Animal:
 
         return "Failed"
 
+    def to_dict(self):
+        return {
+            "ID" : self._ID,
+            "Breed" : self._breed,
+            "Age" : self._age,
+            "Weight" : self._weight,
+            "Height" : self._height,
+            "Gender" : self._gender,
+            "Medication" : self._medication,
+            "Vaccination Date" : self._vaccination_date,
+            "Checkup Date" : self._checkup_date,
+            "Picture" : self._pic,
+            "Lost Status" : self._is_lost,
+        }
+
     def is_lost(self):
         self._is_lost = True
 
     @property
     def ID(self):
         return self._ID
-
-    @ID.setter
-    def ID(self, value):
-        raise ValueError("Cannot modify ID directly")
 
     @property
     def breed(self):
@@ -158,6 +171,14 @@ class Animal:
         if value < 0:
             raise ValueError("Height cannot be negative")
         self._height = value
+
+    @property
+    def gender(self):
+        return self._gender
+
+    @gender.setter
+    def gender(self, value):
+        self._gender = value
 
     @property
     def medication(self):
