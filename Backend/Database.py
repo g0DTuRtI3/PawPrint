@@ -7,12 +7,13 @@ from Owner import Owner
 dbname = get_database()
 
 def insert(obj, database_name):
+    database = dbname[database_name]
     if isinstance(obj, list):
         print("Sending...")
-        database_name.insert_many(obj)
+        database.insert_many(obj)
     else:
         print("Sending...")
-        database_name.insert_one(obj)
+        database.insert_one(obj)
 
 
 def retrieve(database, ID):
@@ -42,14 +43,17 @@ def retrieve(database, ID):
                 # picture=convert_animal["Picture"],
             )
             animal_dict.append(animal_obj)
-            print(animal_obj.to_dict())
 
         owner_obj.add_animal(animal_dict)
+        print(owner_obj.to_dict())
         owners_dict.append(owner_obj)
         return owners_dict
 
+def retrieve_dict(database_name, ID):
+    database = dbname[database_name]
+    return database.find({"ID" : ID}, {"_id": 0})
 
-# testAnimal = dbname["AniTest"]
+testAnimal = dbname["AniTest"]
 #
 # a1 = Animal("Gab", "smelly feet", 14, 211, "dude", "Bombaclat", "Sleep"
 #             , "Sat 01 Feb 2025, at 12:00PM", "Sat 04 Feb 2025, at 12:00PM")
@@ -66,4 +70,4 @@ def retrieve(database, ID):
 # # testAnimal.drop()
 # # insert(owner1.to_dict(), testAnimal)
 # # insert(owner2.to_dict(), testAnimal)
-# retrieve(testAnimal, 1)
+retrieve(testAnimal, 1)
