@@ -68,6 +68,14 @@ body {
     width: 100%;  /* Ensure the content inside the cell takes the full width */
 }
 
+label {
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+    font-size: 2em;
+    color: black;
+    width: 150px;
+}
+
 .label {
     position: relative;
     left: 50%; /* Center horizontally */
@@ -202,4 +210,37 @@ body {
     font-size: 1.2em;
     cursor: pointer;
     outline: none !important;
+}
+
+.edit-form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two equal columns */
+    gap: 20px;  /* Space between columns and rows */
+    grid-auto-rows: minmax(40px, auto); /* Ensure rows adjust based on content */
+    border: 5px solid black;
+    position: fixed;  /* This ensures the form stays on top of the page */
+    top: 50%;  /* Center the form vertically */
+    left: 50%;  /* Center the form horizontally */
+    transform: translate(-50%, -50%);  /* Adjust position so it's perfectly centered */
+    width: 60%;  /* Set the width of the form */
+    max-width: 600px; /* Optional: limit max width */
+    z-index: 1000;  /* Ensure the form is on top of other content */
+    background-color: #fff;  /* Optional: make sure the background is white */
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;  /* Space between label and input */
+}
+
+.form-actions button {
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;  /* Take up remaining space */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from "react";
 import MainPageTables from './MainPageTables';
 import './MainPage.css';
 import MainPageImages from './MainPageImages';
 import MainPageButtons from './MainPageButtons';
-
-import React, { useState, useEffect } from 'react'
+import EditForm from './EditForm';
 import axios from 'axios'
 
 function MainPage() {
@@ -26,13 +26,47 @@ function MainPage() {
             });
     }, [animalData]);
 
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
+        petName: '',
+        breed: '',
+        gender: '',
+        id: '',
+        status: '',
+        age: '',
+        weight: '',
+        allergies: '',
+        vaccination: '',
+        checkUpDate: '',
+        medication: '',
+        ownerName: '',
+        phoneNumber: '',
+        ownerGender: '',
+        email: '',
+        address: ''
+    });
+
+    const openForm = () => {
+        setShowForm(true);
+    };
+
+    const closeForm = () => {
+        setShowForm(false);
+    };
+
+    const handleSave = (data) => {
+        setFormData(data);  // Update the form data in MainPage
+    };
 
     return (
         <div className="wrapper">
             <div className="rectangleBorder">
-                <MainPageTables></MainPageTables>
-                <MainPageImages></MainPageImages>
-                <MainPageButtons></MainPageButtons>
+                <MainPageTables formData={formData} />
+                <MainPageImages />
+                <MainPageButtons onEditClick={openForm} />
+
+                {/* Conditionally render the EditForm */}
+                {showForm && <EditForm onClose={closeForm} onSave={handleSave} />}
             </div>
         </div>
     );
