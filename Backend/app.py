@@ -40,4 +40,4 @@ def create_animal(name, breed, age, weight, gender, owner_name, owner_phone_numb
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
