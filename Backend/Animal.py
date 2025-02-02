@@ -1,24 +1,77 @@
 import datetime
 
+
+def str_to_date(date_string):
+    return datetime.datetime.strptime(date_string, '%a %d %b %Y, at %I:%M%p')
+
+
 class Animal:
     instance = 0
 
-    def __init__(self,breed, age, weight, height, gender, ID=None):
+    def __init__(self, name, breed, age, weight, gender, allergy=None, medication=None, vaccination=None, checkup=None):
         Animal.instance += 1
         self._ID = Animal.instance
-
+        self._name = name
         self._breed = breed
         self._age = age
         self._weight = weight
-        self._height = height
         self._gender = gender
-        self._medication = []
-        self._vaccination_date = []
-        self._checkup_date = []
+
+        if allergy is None:
+            self._allergy = []
+        else:
+            if isinstance(allergy, list):
+                lowercase_allergy = [aller.lower() for aller in allergy]
+                self._allergy.extend(lowercase_allergy)
+            else:
+                self._allergy = [allergy.lower()]
+
+        if medication is None:
+            self._medication = []
+        else:
+            if isinstance(medication, list):
+                lowercase_med = [med.lower() for med in medication]
+                self._medication.extend(lowercase_med)
+            else:
+                self._medication = [medication.lower()]
+
+        if vaccination is None:
+            self._vaccination_date = []
+        else:
+            if isinstance(vaccination, list):
+                for vacc in vaccination:
+                    self._vaccination_date.append(str_to_date(vacc))
+            else:
+                self._vaccination_date = [str_to_date(vaccination)]
+
+        if checkup is None:
+            self._checkup_date = []
+        else:
+            if isinstance(checkup, list):
+                for check in checkup:
+                    self._checkup_date.append(str_to_date(check))
+            else:
+                self._checkup_date = [str_to_date(checkup)]
 
         # Missing default pic
         self._pic = None
         self._is_lost = False
+
+    def to_dict(self):
+        return {
+            "ID" : self._ID,
+            "Name" : self._name,
+            "Breed" : self._breed,
+            "Age" : self._age,
+            "Weight" : self._weight,
+            "Gender" : self._gender,
+            "Allergy" : self._allergy,
+            "Medication" : self._medication,
+            "Vaccination Date" : self._vaccination_date,
+            "Checkup Date" : self._checkup_date,
+            "Picture" : self._pic,
+            "Lost Status" : self._is_lost,
+        }
 
     def add_medication(self, medication):
         """Accepts medication as a string or a list of string"""
@@ -37,6 +90,24 @@ class Animal:
         else:
             for med in self._medication:
                 self._medication.remove(med.lower())
+
+    def add_allergy(self, allergy):
+        """Accepts medication as a string or a list of string"""
+        if isinstance(allergy, list):
+            lowercase_allergy = [aller.lower() for aller in allergy]
+            self._allergy.extend(lowercase_allergy)
+        else:
+            self._allergy.append(allergy.lower())
+
+    def remove_allergy(self, allergy):
+        """Accepts medication as a string or a list of string. Raises a ValueError when value not found so catch it"""
+        if isinstance(allergy, list):
+            for med in allergy:
+                while med in self._allergy:
+                    self._allergy.remove(med)
+        else:
+            for aller in self._allergy:
+                self._allergy.remove(aller.lower())
 
     def update_vaccination_date(self):
         """Removes any past date or repeated date"""
@@ -112,27 +183,20 @@ class Animal:
 
         return "Failed"
 
-    def to_dict(self):
-        return {
-            "ID" : self._ID,
-            "Breed" : self._breed,
-            "Age" : self._age,
-            "Weight" : self._weight,
-            "Height" : self._height,
-            "Gender" : self._gender,
-            "Medication" : self._medication,
-            "Vaccination Date" : self._vaccination_date,
-            "Checkup Date" : self._checkup_date,
-            "Picture" : self._pic,
-            "Lost Status" : self._is_lost,
-        }
-
     def is_lost(self):
         self._is_lost = True
 
     @property
     def ID(self):
         return self._ID
+
+    @property
+    def name(self):
+        return self._breed
+
+    @name.setter
+    def name(self, value):
+        self._breed = value
 
     @property
     def breed(self):
@@ -161,16 +225,6 @@ class Animal:
         if value < 0:
             raise ValueError("Weight cannot be negative")
         self._weight = value
-
-    @property
-    def height(self):
-        return self._height
-
-    @height.setter
-    def height(self, value):
-        if value < 0:
-            raise ValueError("Height cannot be negative")
-        self._height = value
 
     @property
     def gender(self):
