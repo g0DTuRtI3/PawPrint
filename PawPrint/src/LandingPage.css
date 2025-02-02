@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@200;700&display=swap');
+
+body {
+    background-color: #A47864;
+}
+
+header {
+    text-align: center;  /* Centers the text horizontally */
+    width: 100%;         /* Ensures it spans the full width */
+    position: fixed;  /* Positions it relative to the nearest positioned ancestor */
+    top: 5vh;           /* Adjust this to control the distance from the top */
+    left: 50%;           /* Centers it horizontally */
+    transform: translateX(-50%); /* Perfectly aligns it in the center */
+    padding: 20px;       /* Adds some spacing around the header */
+    z-index: 1000;       /* Ensures it's on top of other content */
+}
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    font-size: 12em;      /* Controls the size of the title */
+    -webkit-text-stroke: 5px black; /* Adds a black outline around the text */
+    margin: 0
+}
+
+.wrapper {
+    width: 100vw;  /* Takes the full width of the viewport */
+    height: 100vh; /* Full viewport height */
+    padding: 2vw;  /* Adds dynamic space around the container based on viewport width */
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+}
+
+.rectangleBorder {
+    background-color: transparent;
+    outline: 4px solid black;  /* Black contour */
+    border: 10px solid white;  /* White border */
+    border-radius: 30px;  /* Rounded corners */
+    width: 100%;  /* Full width of the wrapper */
+    height: calc(100vh - 2 * 2vw);  /* Adjust height based on viewport height minus dynamic space */
+    padding: 2vw;  /* Space inside the border */
+    box-sizing: border-box;
+}
+
+.buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 2 equal-width columns */
+    grid-template-rows: repeat(2, 1fr);     /* 2 equal-height rows */
+    text-align: center;  /* Centers button text */
+    margin-top: 20vh;
+}
+
+.Login_btn {
+    font-family: 'Amatic SC', cursive;
+    font-size: 80px !important;      /* Controls the size of the title */
+    font-weight: bold;
+    width: 13vw;  /* Define width */
+    height: 14vw;  /* Define height */
+    background-color: #A47864;  /* White background */
+    background-image: url('../public/paw2.png');  /* Set the image as background */
+    background-size: contain;  /* Ensure the image covers the button */
+    background-repeat: no-repeat;
+    color: #000;  /* Black text */
+    padding: 10px 20px;  /* Padding inside buttons */
+    font-size: 1.2em;  /* Button text size */
+    cursor: pointer;  /* Makes it clickable */
+    outline: none !important; /* Removes the default focus outline */
+}
+
+.SignUp_btn {
+    font-family: 'Amatic SC', cursive;
+    font-size: 80px !important;      /* Controls the size of the title */
+    font-weight: bold;
+    width: 13vw;  /* Define width */
+    height: 14vw;  /* Define height */
+    background-color: #A47864;  /* White background */
+    background-image: url('../public/paw1.png');  /* Set the image as background */
+    background-size: contain;  /* Ensure the image covers the button */
+    background-repeat: no-repeat;
+    color: #000;  /* Black text */
+    padding: 10px 20px;  /* Padding inside buttons */
+    font-size: 1.2em;  /* Button text size */
+    cursor: pointer;  /* Makes it clickable */
+    outline: none !important; /* Removes the default focus outline */
+}
+
+.QR_btn {
+    font-family: 'Amatic SC', cursive;
+    font-size: 80px !important;      /* Controls the size of the title */
+    font-weight: bold;
+    width: 18vw;  /* Define width */
+    height: 12vw;  /* Define height */
+    background-color: #A47864;  /* White background */
+    color: #000;  /* Black text */
+    padding: 10px 20px;  /* Padding inside buttons */
+    font-size: 1.2em;  /* Button text size */
+    cursor: pointer;  /* Makes it clickable */
+    transition: all 0.3s ease;  /* Smooth transition for hover effect */
+    position: relative;  /* Enables the use of 'top' */
+    top: 30%;  /* Moves the button down by 20px */
+    outline: none !important; /* Removes the default focus outline */
+}
+
+.Login_btn:hover,
+.SignUp_btn:hover,
+.QR_btn:hover {
+    transform: scale(1.2);
+}
+
+.image-container img {
+    position: absolute;
+    right: 5vw;
+    width: 15%;  /* Makes the image take up full width */
+    top: 6%;
+    height: auto; /* Maintains the aspect ratio */
+}
