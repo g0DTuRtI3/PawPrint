@@ -12,6 +12,7 @@ class Owner:
         self.animals = []
 
     def to_dict(self):
+        """Translate the obj into a dictionary format"""
         animal_dict = []
         for animal in self.animals:
             animal_dict.append(animal.to_dict())
@@ -27,7 +28,12 @@ class Owner:
         }
 
     def add_animal(self, new_animal):
-        self.animals.append(new_animal)
+        """Adds new animals to the owner.
+        new_animal can be one animal or a list of them"""
+        if isinstance(new_animal, list):
+            self.animals.extend(new_animal)
+        else:
+            self.animals.append(new_animal)
 
     @property
     def ID(self):

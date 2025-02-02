@@ -1,12 +1,14 @@
 import datetime
 
 def str_to_date(date_string):
+    """Conversion string to datetime format"""
     if isinstance(date_string, list):
         return [datetime.datetime.strptime(date, '%a %d %b %Y, at %I:%M%p') for date in date_string]
     else:
         return [datetime.datetime.strptime(date_string, '%a %d %b %Y, at %I:%M%p')]
 
 def date_to_str(date_list):
+    """Conversion datime to string format"""
     return [date.strftime('%a %d %b %Y, at %I:%M%p') for date in date_list]
 
 class Animal:
@@ -58,6 +60,7 @@ class Animal:
         self._is_lost = False
 
     def to_dict(self):
+        """Translate the obj into a dictionary format"""
         vaccination_date_str = [date_to_str(this_date) for this_date in self._vaccination_date]
         checkup_date_str = [date_to_str(this_date) for this_date in self._checkup_date]
         return {
