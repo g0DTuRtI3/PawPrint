@@ -12,16 +12,19 @@ function MainPage() {
 
     // Fetch data when the component mounts
     useEffect(() => {
+        const databaseName = "my_database";
+        const url = `http://127.0.0.1:5000/api/database/${databaseName}/`;
+        
         // Fetching data from your Flask API
-        // You can replace '/api/database/<database_name>/ID/<ID>' with the actual URL
-        axios.post('http://127.0.0.1:5000/api/database/<database_name>/obj/<data>/', animalData)  // Adjust URL
+        axios.post(url, animalData)
             .then(response => {
                 console.log('Data saved:', response.data);
+                setResponseData(response.data);
             })
             .catch(error => {
                 console.error('Error:', error);
             });
-    }, []); // Empty dependency array means this effect runs once when the component mounts
+    }, [animalData]);
 
 
     return (
