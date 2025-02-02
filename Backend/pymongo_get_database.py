@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_database():
-
     CONNECTION = os.getenv("MONGO_URI")
 
     if not CONNECTION:

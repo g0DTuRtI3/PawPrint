@@ -1,9 +1,13 @@
 import datetime
 
-
 def str_to_date(date_string):
-    return datetime.datetime.strptime(date_string, '%a %d %b %Y, at %I:%M%p')
+    if isinstance(date_string, list):
+        return [datetime.datetime.strptime(date, '%a %d %b %Y, at %I:%M%p') for date in date_string]
+    else:
+        return [datetime.datetime.strptime(date_string, '%a %d %b %Y, at %I:%M%p')]
 
+def date_to_str(date_list):
+    return [date.strftime('%a %d %b %Y, at %I:%M%p') for date in date_list]
 
 class Animal:
     instance = 0
@@ -21,8 +25,7 @@ class Animal:
             self._allergy = []
         else:
             if isinstance(allergy, list):
-                lowercase_allergy = [aller.lower() for aller in allergy]
-                self._allergy.extend(lowercase_allergy)
+                self._allergy = [aller.lower() for aller in allergy]
             else:
                 self._allergy = [allergy.lower()]
 
@@ -30,8 +33,7 @@ class Animal:
             self._medication = []
         else:
             if isinstance(medication, list):
-                lowercase_med = [med.lower() for med in medication]
-                self._medication.extend(lowercase_med)
+                self._medication = [med.lower() for med in medication]
             else:
                 self._medication = [medication.lower()]
 
@@ -39,8 +41,7 @@ class Animal:
             self._vaccination_date = []
         else:
             if isinstance(vaccination, list):
-                for vacc in vaccination:
-                    self._vaccination_date.append(str_to_date(vacc))
+                self._vaccination_date = [str_to_date(vacc) for vacc in vaccination]
             else:
                 self._vaccination_date = [str_to_date(vaccination)]
 
@@ -48,8 +49,7 @@ class Animal:
             self._checkup_date = []
         else:
             if isinstance(checkup, list):
-                for check in checkup:
-                    self._checkup_date.append(str_to_date(check))
+                self._checkup_date = [str_to_date(check) for check in checkup]
             else:
                 self._checkup_date = [str_to_date(checkup)]
 
@@ -58,19 +58,21 @@ class Animal:
         self._is_lost = False
 
     def to_dict(self):
+        vaccination_date_str = [date_to_str(this_date) for this_date in self._vaccination_date]
+        checkup_date_str = [date_to_str(this_date) for this_date in self._checkup_date]
         return {
-            "ID" : self._ID,
-            "Name" : self._name,
-            "Breed" : self._breed,
-            "Age" : self._age,
-            "Weight" : self._weight,
-            "Gender" : self._gender,
-            "Allergy" : self._allergy,
-            "Medication" : self._medication,
-            "Vaccination Date" : self._vaccination_date,
-            "Checkup Date" : self._checkup_date,
-            "Picture" : self._pic,
-            "Lost Status" : self._is_lost,
+            "ID": self._ID,
+            "Name": self._name,
+            "Breed": self._breed,
+            "Age": self._age,
+            "Weight": self._weight,
+            "Gender": self._gender,
+            "Allergy": self._allergy,
+            "Medication": self._medication,
+            "Vaccination Date": vaccination_date_str,
+            "Checkup Date": checkup_date_str,
+            "Picture": self._pic,
+            "Lost Status": self._is_lost,
         }
 
     def add_medication(self, medication):
@@ -249,10 +251,7 @@ class Animal:
     @property
     def vaccination_date(self):
         """Returns the date as a list of string of format (Sat 01 Feb 2025, at 12:00PM)"""
-        date_list = []
-        for date in self._vaccination_date:
-            date_list.append(date.strftime('%a %d %b %Y, at %I:%M%p'))
-        return date_list
+        return [date.strftime('%a %d %b %Y, at %I:%M%p') for date in self._vaccination_date]
 
     @vaccination_date.setter
     def vaccination_date(self, value):
