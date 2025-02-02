@@ -1,14 +1,14 @@
 import LandingPageTitle from "./LandingPageTitle"
 import LandingPageButtons from "./LandingPageButtons";
-import './LandingPage.css';
 import LandingPageImages from "./LandingPageImages";
+import './LandingPage.css';
 
 function LandingPage() {
     return (
         <>
             <LandingPageTitle/>
             <div className="wrapper">
-                <div className="rectangle1">
+                <div className="rectangleBorder">
                     <LandingPageImages/>
                     <LandingPageButtons/>
                 </div>

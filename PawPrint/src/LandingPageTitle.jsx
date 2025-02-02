@@ -6,8 +6,6 @@ function LandingPageTitle() {
             <h1>PawPrint</h1>
         </header>
     );
-    
-
 }
 
 export default LandingPageTitle

@@ -30,7 +30,7 @@ h1 {
     box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
 }
 
-.rectangle1 {
+.rectangleBorder {
     background-color: transparent;
     outline: 4px solid black;  /* Black contour */
     border: 10px solid white;  /* White border */
@@ -52,15 +52,14 @@ h1 {
 .Login_btn {
     font-family: 'Amatic SC', cursive;
     font-size: 80px !important;      /* Controls the size of the title */
-    font-weight: 700;
-    -webkit-text-stroke: 3px black; /* Adds a black outline around the text */
+    font-weight: bold;
     width: 13vw;  /* Define width */
     height: 14vw;  /* Define height */
     background-color: #A47864;  /* White background */
     background-image: url('../public/paw2.png');  /* Set the image as background */
     background-size: contain;  /* Ensure the image covers the button */
     background-repeat: no-repeat;
-    color: #FFF;  /* Black text */
+    color: #000;  /* Black text */
     padding: 10px 20px;  /* Padding inside buttons */
     font-size: 1.2em;  /* Button text size */
     cursor: pointer;  /* Makes it clickable */
@@ -70,15 +69,14 @@ h1 {
 .SignUp_btn {
     font-family: 'Amatic SC', cursive;
     font-size: 80px !important;      /* Controls the size of the title */
-    font-weight: 700;
-    -webkit-text-stroke: 3px black; /* Adds a black outline around the text */
+    font-weight: bold;
     width: 13vw;  /* Define width */
     height: 14vw;  /* Define height */
     background-color: #A47864;  /* White background */
     background-image: url('../public/paw1.png');  /* Set the image as background */
     background-size: contain;  /* Ensure the image covers the button */
     background-repeat: no-repeat;
-    color: #FFF;  /* Black text */
+    color: #000;  /* Black text */
     padding: 10px 20px;  /* Padding inside buttons */
     font-size: 1.2em;  /* Button text size */
     cursor: pointer;  /* Makes it clickable */
@@ -88,12 +86,11 @@ h1 {
 .QR_btn {
     font-family: 'Amatic SC', cursive;
     font-size: 80px !important;      /* Controls the size of the title */
-    font-weight: 700;
-    -webkit-text-stroke: 3px black; /* Adds a black outline around the text */
+    font-weight: bold;
     width: 18vw;  /* Define width */
     height: 12vw;  /* Define height */
     background-color: #A47864;  /* White background */
-    color: #FFF;  /* Black text */
+    color: #000;  /* Black text */
     padding: 10px 20px;  /* Padding inside buttons */
     font-size: 1.2em;  /* Button text size */
     cursor: pointer;  /* Makes it clickable */
@@ -103,18 +100,11 @@ h1 {
     outline: none !important; /* Removes the default focus outline */
 }
 
-/*
-.Login_btn:hover {
-    color: #fff;
-}
-*/
-
 .Login_btn:hover,
 .SignUp_btn:hover,
 .QR_btn:hover {
     transform: scale(1.2);
 }
-
 
 .image-container img {
     position: absolute;
@@ -123,5 +113,3 @@ h1 {
     top: 6%;
     height: auto; /* Maintains the aspect ratio */
 }
-  
-
