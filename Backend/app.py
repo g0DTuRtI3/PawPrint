@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from Database import retrieve_dict, insert
+from Animal import Animal
 from Owner import Owner
 
 app = Flask(__name__)
@@ -25,9 +26,12 @@ def set_data(database_name, data):
         return jsonify({"error" : str(e)}), 500
 
 @app.route('/api/name/<name>/phone_number/<phone_number>/gender/<gender>/email/<email>/address/<address>/', methods=['GET'])
-def create_owner(name, phone_number,gender, email, address):
+def create_animal(name, breed, age, weight, gender, owner_name, owner_phone_number, owner_gender, owner_email, owner_address,
+                  allergy=None, medication=None, vaccination=None, checkup=None):
     try:
-        response = Owner(name, phone_number, gender, email, address).to_dict()
+        response = Animal(name, breed, age, weight, gender, allergy, medication, vaccination, checkup)
+        owner = Owner(owner_name, owner_phone_number, owner_gender, owner_email, owner_address)
+        response.add_owner(owner)
         return jsonify(response)
     except Exception as e:
         print(e)
